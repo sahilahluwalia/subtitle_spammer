@@ -4,9 +4,11 @@ from selenium.webdriver.common.keys import Keys
 
 #variables
 name=input("Enter the Name correctly\n")
-delay=input("Enter delay time of messages\n")
+delay=int(input("Enter delay time of messages\n"))
 os=int(input("Which OS?\n Press 1 for Linux\n Press 2 for Windows\n"))
+wait_time=int(input("Enter wait time in seconds to excute the spamming script \n(use more seconds if your browser is taking more time to scan barcode)\n for normal use 15-20\n"))
 
+    
 #firefox for linux and chrome for windows
 if os==1: 
     driver = webdriver.Firefox()
@@ -18,7 +20,7 @@ else :
 
 driver.get('https://web.whatsapp.com/')
 #time for scaning barcode from mobile
-time.sleep(12)
+time.sleep(wait_time)
 #locating victim name in search bar
 ele=driver.find_element_by_xpath("/html/body/div[1]/div/div/div[3]/div/div[1]/div/label/div/div[2]")
 time.sleep(1)
@@ -38,4 +40,4 @@ texts=file.read().split("\n")
 for sentence in texts:
     ele.send_keys(sentence)
     ele.send_keys(Keys.ENTER)
-    time.sleep(2)
+    time.sleep(delay)
